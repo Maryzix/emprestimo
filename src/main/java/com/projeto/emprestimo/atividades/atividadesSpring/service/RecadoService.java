@@ -1,7 +1,7 @@
-package com.projeto.emprestimo.atividadesSpring.service;
+package com.projeto.emprestimo.atividades.atividadesSpring.service;
 
-import com.projeto.emprestimo.atividadesSpring.model.Recado;
-import com.projeto.emprestimo.atividadesSpring.repository.RecadoRepository;
+import com.projeto.emprestimo.atividades.atividadesSpring.model.Recado;
+import com.projeto.emprestimo.atividades.atividadesSpring.repository.RecadoRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

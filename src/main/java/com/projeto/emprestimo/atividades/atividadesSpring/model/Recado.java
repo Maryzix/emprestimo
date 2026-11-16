@@ -1,4 +1,4 @@
-package com.projeto.emprestimo.atividadesSpring.model;
+package com.projeto.emprestimo.atividades.atividadesSpring.model;
 
 import jakarta.persistence.*;
 

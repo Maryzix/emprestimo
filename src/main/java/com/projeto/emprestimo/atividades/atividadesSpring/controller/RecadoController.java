@@ -1,7 +1,7 @@
-package com.projeto.emprestimo.atividadesSpring.controller;
+package com.projeto.emprestimo.atividades.atividadesSpring.controller;
 
-import com.projeto.emprestimo.atividadesSpring.model.Recado;
-import com.projeto.emprestimo.atividadesSpring.service.RecadoService;
+import com.projeto.emprestimo.atividades.atividadesSpring.model.Recado;
+import com.projeto.emprestimo.atividades.atividadesSpring.service.RecadoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
