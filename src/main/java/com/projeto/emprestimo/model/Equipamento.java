@@ -1,7 +1,9 @@
 package com.projeto.emprestimo.model;
+import com.projeto.emprestimo.exception.ConflitoException;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+
 
 @Entity
 public class Equipamento {
@@ -10,23 +12,23 @@ public class Equipamento {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @NotBlank(message = "O patrimônio é obrigatório") //novo
+        @NotBlank(message = "O patrimônio é obrigatório")
         @Column(nullable = false, unique = true)
         private String patrimonio;
 
-        @NotBlank(message = "O nome é obrigatório") //novo
+        @NotBlank(message = "O nome é obrigatório")
         @Column(nullable = false)
         private String nome;
 
-        @NotNull (message = "O tipo é obrigatório!") //novo
-        @Enumerated(EnumType.STRING) //como o enum é guardado no banco
+        @NotNull(message = "O tipo é obrigatório")
+        @Enumerated(EnumType.STRING)
         @Column(nullable = false)
         private TipoEquipamento tipo;
 
         @Column(nullable = false)
         private boolean disponivel = true;
 
-        public Equipamento() { } //necessario para rodar
+        public Equipamento() { }
 
 
         public Long getId() {
@@ -69,4 +71,19 @@ public class Equipamento {
                 this.disponivel = disponivel;
         }
 
+        public void emprestar() {
+                if (!disponivel) {
+                        throw new ConflitoException("Equipamento indisponível");
+                }
+                disponivel = false;
+        }
+    /*
+    O emprestar() lê assim: “se não estiver disponível, lança o erro e para aí;
+    se passou do if, marca como indisponível”.
+    O ! na frente de disponivel significa “não”.
+     */
+
+        public void devolver() {
+                disponivel = true;
+        }
 }
