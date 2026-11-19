@@ -1,40 +1,58 @@
 package com.projeto.emprestimo.controller;
+
 import com.projeto.emprestimo.model.Emprestimo;
 import com.projeto.emprestimo.service.EmprestimoService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/emprestimos")
-public class EmprestimoController {
+public class EmprestimoController{
+    private final EmprestimoService emprestimoService;
 
-    private final EmprestimoService service;
-
-    public EmprestimoController(EmprestimoService service) {
-        this.service = service;
+    public EmprestimoController(EmprestimoService emprestimoService){
+        this.emprestimoService = emprestimoService;
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Emprestimo emprestar(@RequestParam Long equipamentoId,
-                                @RequestParam Long colaboradorId) {
-        return service.emprestar(equipamentoId, colaboradorId);
+    public ResponseEntity<Emprestimo>cadastrar(
+            @RequestParam Long equipamentoId,
+            @RequestParam Long colaboradorId
+    ){
+        Emprestimo emprestimo = emprestimoService.cadastrar(
+                equipamentoId,
+                colaboradorId
+        );
+        return ResponseEntity.status(HttpStatus.CREATED).body(emprestimo);
     }
 
     @GetMapping
-    public List<Emprestimo> listar(@RequestParam(required = false) Boolean atrasados) {
-        return service.listar(atrasados);
+    public ResponseEntity<List<Emprestimo>> listar(
+            @RequestParam(required = false) Boolean atrasados
+    ) {
+        List<Emprestimo> emprestimos = emprestimoService.listar(atrasados);
+        return ResponseEntity.ok(emprestimos);
     }
 
     @GetMapping("/{id}")
-    public Emprestimo buscar(@PathVariable Long id) {
-        return service.buscar(id);
+    public ResponseEntity<Emprestimo> buscar(@PathVariable Long id){
+        Emprestimo emprestimo = emprestimoService.buscar(id);
+        return ResponseEntity.ok(emprestimo);
     }
 
     @PutMapping("/{id}/devolucao")
-    public Emprestimo devolver(@PathVariable Long id) {
-        return service.devolver(id);
+    public ResponseEntity<Emprestimo> devolver(@PathVariable Long id){
+        Emprestimo emprestimo = emprestimoService.devolver(id);
+        return ResponseEntity.ok(emprestimo);
     }
 }
