@@ -1,43 +1,28 @@
 package com.projeto.emprestimo.model;
-import com.projeto.emprestimo.exception.ConflitoException;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
 
 @Entity
 public class Equipamento {
-
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @NotBlank(message = "O patrimônio é obrigatório")
+        @NotBlank(message = "Obrigatório")
         @Column(nullable = false, unique = true)
         private String patrimonio;
-
-        @NotBlank(message = "O nome é obrigatório")
+        @NotBlank(message = "Obrigatório")
         @Column(nullable = false)
         private String nome;
-
-        @NotNull(message = "O tipo é obrigatório")
         @Enumerated(EnumType.STRING)
         @Column(nullable = false)
         private TipoEquipamento tipo;
-
         @Column(nullable = false)
         private boolean disponivel = true;
 
         public Equipamento() { }
-
-
-        public Long getId() {
-                return id;
-        }
-
-        public void setId(Long id) {
-                this.id = id;
-        }
+        public Long getId() { return id; }
+        public void setId(Long id) { this.id = id; }
 
         public String getPatrimonio() {
                 return patrimonio;
@@ -47,43 +32,35 @@ public class Equipamento {
                 this.patrimonio = patrimonio;
         }
 
-        public String getNome() {
-                return nome;
+        public String getNome(){
+                return this.nome;
         }
 
-        public void setNome(String nome) {
+        public void setNome(String nome){
                 this.nome = nome;
         }
 
-        public TipoEquipamento getTipo() {
-                return tipo;
+        public TipoEquipamento getTipo(){
+                return this.tipo;
         }
 
-        public void setTipo(TipoEquipamento tipo) {
+        public void setTipo(TipoEquipamento tipo){
                 this.tipo = tipo;
         }
 
-        public boolean isDisponivel() {
-                return disponivel;
-        }
-
+        public boolean isDisponivel() { return disponivel; }
         public void setDisponivel(boolean disponivel) {
                 this.disponivel = disponivel;
         }
 
-        public void emprestar() {
-                if (!disponivel) {
-                        throw new ConflitoException("Equipamento indisponível");
+        public void emprestar(){
+                if(!isDisponivel()){
+                        throw new IllegalStateException("Equipamento indisponível");
                 }
-                disponivel = false;
+                setDisponivel(false);
         }
-    /*
-    O emprestar() lê assim: “se não estiver disponível, lança o erro e para aí;
-    se passou do if, marca como indisponível”.
-    O ! na frente de disponivel significa “não”.
-     */
 
-        public void devolver() {
-                disponivel = true;
+        public void devolver(){
+                setDisponivel(true);
         }
 }
