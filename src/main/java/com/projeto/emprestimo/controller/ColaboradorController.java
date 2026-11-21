@@ -4,8 +4,8 @@ import com.projeto.emprestimo.model.Colaborador;
 import com.projeto.emprestimo.model.Emprestimo;
 import com.projeto.emprestimo.service.ColaboradorService;
 import com.projeto.emprestimo.service.EmprestimoService;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,32 +13,43 @@ import java.util.List;
 @RestController
 @RequestMapping("/colaboradores")
 public class ColaboradorController {
-    private final ColaboradorService service;
+    private final ColaboradorService colaboradorService;
     private final EmprestimoService emprestimoService;
+
     public ColaboradorController(
-            ColaboradorService service,
-            EmprestimoService emprestimoService) {
-        this.service = service;
+            ColaboradorService colaboradorService,
+            EmprestimoService emprestimoService
+    ){
+        this.colaboradorService = colaboradorService;
         this.emprestimoService = emprestimoService;
     }
-    @GetMapping
-    public List<Colaborador> listar() {
-        return service.listar();
-    }
-    @GetMapping("/{id}")
-    public Colaborador buscar(@PathVariable Long id) {
-        return service.buscar(id);
-    }
+
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Colaborador cadastrar(
-            @RequestBody @Valid Colaborador colaborador) {
-        return service.cadastrar(colaborador);
+    public ResponseEntity<Colaborador> cadastrar(
+            @RequestBody Colaborador colaborador
+    ){
+        Colaborador novoColaborador = colaboradorService.cadastrar(colaborador);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoColaborador);
     }
+
     @GetMapping("/{id}/emprestimos")
-    public List<Emprestimo> emprestimos(
-            @PathVariable Long id) {
-        return emprestimoService.listarDoColaborador(id);
+    public ResponseEntity<List<Emprestimo>> listarEmprestimos(
+            @PathVariable Long id
+    ){
+        List<Emprestimo> emprestimos = emprestimoService.listarDoColaborador(id);
+        return ResponseEntity.ok(emprestimos);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Colaborador>> listar(){
+        List<Colaborador> colaboradores = colaboradorService.listar();
+        return ResponseEntity.ok(colaboradores);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Colaborador> buscar(@PathVariable Long id){
+        Colaborador colaborador = colaboradorService.buscar(id);
+        return ResponseEntity.ok(colaborador);
     }
 }
 

@@ -1,4 +1,4 @@
-package com.projeto.emprestimo.dto;
+package com.projeto.emprestimo.atividades.atividadesSpring.dto;
 
 import jakarta.validation.constraints.NotNull;
 

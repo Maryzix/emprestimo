@@ -1,4 +1,4 @@
-package com.projeto.emprestimo.exception;
+package com.projeto.emprestimo.atividades.atividadesSpring.exception;
 
 public class NaoEncontradoException
         extends RuntimeException {

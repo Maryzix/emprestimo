@@ -1,4 +1,4 @@
-package com.projeto.emprestimo.exception;
+package com.projeto.emprestimo.atividades.atividadesSpring.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
