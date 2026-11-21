@@ -1,13 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Empréstimos | Dashboard</title>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -15,19 +12,16 @@
 
 <div class="layout">
 
-    <!-- ==========================================
-         SIDEBAR
-    =========================================== -->
-
+    <!-- SIDEBAR -->
     <aside class="sidebar">
 
         <div class="brand">
             <h2>Empréstimos</h2>
+            <br>
             <span>Gestão de equipamentos</span>
         </div>
 
         <nav class="navigation">
-
             <a href="#" class="nav-link active" data-page="dashboard">
                 <span>Dashboard</span>
             </a>
@@ -47,21 +41,14 @@
             <a href="#" class="nav-link" data-page="historico">
                 <span>Histórico</span>
             </a>
-
         </nav>
 
     </aside>
 
-    <!-- ==========================================
-         CONTEÚDO PRINCIPAL
-    =========================================== -->
-
+    <!-- CONTEÚDO PRINCIPAL -->
     <main class="main-content">
 
-        <!-- CABEÇALHO -->
-
         <header class="topbar">
-
             <div>
                 <h1 id="page-title">Dashboard</h1>
                 <p id="breadcrumb">Dashboard</p>
@@ -70,15 +57,11 @@
             <div class="topbar-date">
                 <span id="current-date"></span>
             </div>
-
         </header>
 
         <div class="content">
 
-            <!-- ==========================================
-                 DASHBOARD
-            =========================================== -->
-
+            <!-- DASHBOARD -->
             <section id="dashboard" class="page active">
 
                 <div class="section-heading">
@@ -122,14 +105,10 @@
 
             </section>
 
-            <!-- ==========================================
-                 COLABORADORES
-            =========================================== -->
-
+            <!-- COLABORADORES -->
             <section id="colaboradores" class="page">
 
                 <div class="section-heading">
-
                     <div>
                         <h2>Colaboradores</h2>
                         <p>Gerencie os colaboradores cadastrados.</p>
@@ -138,39 +117,28 @@
                     <button
                             type="button"
                             id="btn-novo-colaborador"
-                            class="btn-primary"
-                    >
+                            class="btn-primary">
                         + Novo colaborador
                     </button>
-
                 </div>
 
-                <div
-                        id="mensagem-colaboradores"
-                        class="notification hidden"
-                ></div>
+                <div id="mensagem-colaboradores" class="notification hidden"></div>
 
                 <div class="panel">
 
                     <div class="section-heading">
                         <h3>Colaboradores cadastrados</h3>
-
-                        <span id="contador-colaboradores">
-                            0 colaborador(es)
-                        </span>
+                        <span id="contador-colaboradores">0 colaborador(es)</span>
                     </div>
 
                     <input
                             type="search"
                             id="busca-colaborador"
                             class="search-input"
-                            placeholder="Buscar por nome ou e-mail..."
-                    >
+                            placeholder="Buscar por nome ou e-mail...">
 
                     <div class="table-container">
-
                         <table class="data-table">
-
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -181,76 +149,52 @@
                             </thead>
 
                             <tbody id="tabela-colaboradores">
-
                             <tr>
                                 <td colspan="4" class="table-message">
                                     Carregando colaboradores...
                                 </td>
                             </tr>
-
                             </tbody>
-
                         </table>
-
                     </div>
 
                 </div>
-
             </section>
 
-            <!-- ==========================================
-                 EQUIPAMENTOS
-            =========================================== -->
-
+            <!-- EQUIPAMENTOS -->
             <section id="equipamentos" class="page">
 
                 <div class="section-heading">
-
                     <div>
                         <h2>Equipamentos</h2>
-                        <p>
-                            Gerencie os equipamentos disponíveis para empréstimo.
-                        </p>
+                        <p>Gerencie os equipamentos disponíveis para empréstimo.</p>
                     </div>
 
                     <button
                             type="button"
                             id="btn-novo-equipamento"
-                            class="btn-primary"
-                    >
+                            class="btn-primary">
                         + Novo equipamento
                     </button>
-
                 </div>
 
-                <div
-                        id="mensagem-equipamentos"
-                        class="notification hidden"
-                ></div>
+                <div id="mensagem-equipamentos" class="notification hidden"></div>
 
                 <div class="panel">
 
                     <div class="section-heading">
-
                         <h3>Equipamentos cadastrados</h3>
-
-                        <span id="contador-equipamentos">
-                            0 equipamento(s)
-                        </span>
-
+                        <span id="contador-equipamentos">0 equipamento(s)</span>
                     </div>
 
                     <input
                             type="search"
                             id="busca-equipamento"
                             class="search-input"
-                            placeholder="Buscar por patrimônio, nome ou tipo..."
-                    >
+                            placeholder="Buscar por patrimônio, nome ou tipo...">
 
                     <div class="table-container">
-
                         <table class="data-table">
-
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -262,281 +206,303 @@
                             </thead>
 
                             <tbody id="tabela-equipamentos">
-
                             <tr>
                                 <td colspan="5" class="table-message">
                                     Carregando equipamentos...
                                 </td>
                             </tr>
-
                             </tbody>
-
                         </table>
-
                     </div>
 
                 </div>
-
             </section>
 
-            <!-- ==========================================
-                 EMPRÉSTIMOS
-            =========================================== -->
-
+            <!-- EMPRÉSTIMOS -->
             <section id="emprestimos" class="page">
 
                 <div class="section-heading">
-
                     <div>
                         <h2>Empréstimos</h2>
-                        <p>Gerencie os empréstimos de equipamentos.</p>
+                        <p>Gerencie os empréstimos e acompanhe as devoluções.</p>
                     </div>
 
                     <button
                             type="button"
                             id="btn-novo-emprestimo"
-                            class="btn-primary"
-                    >
+                            class="btn-primary">
                         + Novo empréstimo
                     </button>
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <h3>Empréstimos ativos</h3>
+                        <strong id="emprestimos-ativos">0</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Atrasados</h3>
+                        <strong id="emprestimos-atrasados">0</strong>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Devolvidos</h3>
+                        <strong id="emprestimos-devolvidos">0</strong>
+                    </div>
 
                 </div>
+
+                <div id="mensagem-emprestimos" class="notification hidden"></div>
 
                 <div class="panel">
 
                     <div class="section-heading">
-                        <h3>Empréstimos ativos</h3>
+                        <div>
+                            <h3>Histórico de empréstimos</h3>
+                            <p>Consulte a situação de cada equipamento.</p>
+                        </div>
+
+                        <button
+                                type="button"
+                                id="btn-filtrar-atrasados"
+                                class="btn-secondary">
+                            Ver atrasados
+                        </button>
                     </div>
 
-                    <p>
-                        A integração dos empréstimos será realizada na próxima etapa.
-                    </p>
+                    <div class="table-container">
+                        <table class="data-table">
 
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Colaborador</th>
+                                <th>Equipamento</th>
+                                <th>Data do empréstimo</th>
+                                <th>Previsão de devolução</th>
+                                <th>Devolução</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="tabela-emprestimos">
+                            <tr>
+                                <td colspan="8">Carregando empréstimos...</td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
                 </div>
+
+                <!-- MODAL DE EMPRÉSTIMO -->
+                <dialog id="modal-emprestimo" class="modal">
+
+                    <h2>Novo empréstimo</h2>
+                    <p>Selecione o colaborador e o equipamento.</p>
+
+                    <form id="form-emprestimo">
+
+                        <div class="form-group">
+                            <label for="colaborador-emprestimo">Colaborador</label>
+                            <select id="colaborador-emprestimo" required>
+                                <option value="">Selecione um colaborador</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="equipamento-emprestimo">Equipamento disponível</label>
+                            <select id="equipamento-emprestimo" required>
+                                <option value="">Selecione um equipamento</option>
+                            </select>
+                        </div>
+
+                        <div
+                                id="erro-formulario-emprestimo"
+                                class="notification hidden">
+                        </div>
+
+                        <div class="modal-actions">
+
+                            <button
+                                    type="button"
+                                    id="cancelar-modal-emprestimo"
+                                    class="btn-secondary">
+                                Cancelar
+                            </button>
+
+                            <button
+                                    type="submit"
+                                    id="btn-salvar-emprestimo"
+                                    class="btn-primary">
+                                Registrar empréstimo
+                            </button>
+
+                        </div>
+                    </form>
+                </dialog>
 
             </section>
 
-            <!-- ==========================================
-                 HISTÓRICO
-            =========================================== -->
-
+            <!-- HISTÓRICO -->
             <section id="historico" class="page">
 
                 <div class="section-heading">
-
                     <div>
                         <h2>Histórico</h2>
                         <p>Consulte as movimentações do sistema.</p>
                     </div>
-
                 </div>
 
                 <div class="panel">
-
                     <h3>Histórico de movimentações</h3>
-
                     <p>
                         O histórico será integrado na próxima etapa do projeto.
                     </p>
-
                 </div>
 
             </section>
 
         </div>
-
     </main>
-
 </div>
 
-<!-- ==========================================
-     MODAL: CADASTRAR COLABORADOR
-=========================================== -->
-
+<!-- MODAL: CADASTRAR COLABORADOR -->
 <dialog id="modal-colaborador" class="modal">
 
     <div class="section-heading">
-
         <h2>Novo colaborador</h2>
 
         <button
                 type="button"
                 id="fechar-modal"
-                class="btn-secondary"
-        >
+                class="btn-secondary">
             X
         </button>
-
     </div>
 
     <form id="form-colaborador">
 
         <div class="form-group">
-
             <label for="nome">Nome</label>
-
             <input
                     type="text"
                     id="nome"
                     placeholder="Nome completo"
-                    required
-            >
-
+                    required>
         </div>
 
         <div class="form-group">
-
             <label for="email">E-mail</label>
-
             <input
                     type="email"
                     id="email"
                     placeholder="email@empresa.com"
-                    required
-            >
-
+                    required>
         </div>
 
         <div class="form-group">
-
             <label for="cargo">Cargo</label>
-
             <input
                     type="text"
                     id="cargo"
                     placeholder="Cargo do colaborador"
-                    required
-            >
-
+                    required>
         </div>
 
-        <div
-                id="erro-formulario"
-                class="notification hidden"
-        ></div>
+        <div id="erro-formulario" class="notification hidden"></div>
 
         <div class="modal-actions">
 
             <button
                     type="button"
                     id="cancelar-modal"
-                    class="btn-secondary"
-            >
+                    class="btn-secondary">
                 Cancelar
             </button>
 
             <button
                     type="submit"
                     id="btn-salvar-colaborador"
-                    class="btn-primary"
-            >
+                    class="btn-primary">
                 Salvar colaborador
             </button>
 
         </div>
-
     </form>
-
 </dialog>
 
-<!-- ==========================================
-     MODAL: CADASTRAR EQUIPAMENTO
-=========================================== -->
-
+<!-- MODAL: CADASTRAR EQUIPAMENTO -->
 <dialog id="modal-equipamento" class="modal">
 
     <div class="section-heading">
-
         <h2>Novo equipamento</h2>
 
         <button
                 type="button"
                 id="fechar-modal-equipamento"
-                class="btn-secondary"
-        >
+                class="btn-secondary">
             X
         </button>
-
     </div>
 
     <form id="form-equipamento">
 
         <div class="form-group">
-
             <label for="patrimonio">Patrimônio</label>
-
             <input
                     type="text"
                     id="patrimonio"
                     placeholder="Ex.: PAT-001"
-                    required
-            >
-
+                    required>
         </div>
 
         <div class="form-group">
-
             <label for="nome-equipamento">Nome do equipamento</label>
-
             <input
                     type="text"
                     id="nome-equipamento"
                     placeholder="Ex.: Notebook Dell"
-                    required
-            >
-
+                    required>
         </div>
 
         <div class="form-group">
-
             <label for="tipo-equipamento">Tipo</label>
 
             <select id="tipo-equipamento" required>
-
                 <option value="">Selecione o tipo</option>
-
                 <option value="NOTEBOOK">Notebook</option>
                 <option value="MONITOR">Monitor</option>
                 <option value="PROJETOR">Projetor</option>
                 <option value="IMPRESSORA">Impressora</option>
                 <option value="HEADSET">Headset</option>
-
             </select>
-
         </div>
 
-        <div
-                id="erro-formulario-equipamento"
-                class="notification hidden"
-        ></div>
+        <div id="erro-formulario-equipamento" class="notification hidden"></div>
 
         <div class="modal-actions">
 
             <button
                     type="button"
                     id="cancelar-modal-equipamento"
-                    class="btn-secondary"
-            >
+                    class="btn-secondary">
                 Cancelar
             </button>
 
             <button
                     type="submit"
                     id="btn-salvar-equipamento"
-                    class="btn-primary"
-            >
+                    class="btn-primary">
                 Salvar equipamento
             </button>
 
         </div>
-
     </form>
-
 </dialog>
-
-<!-- ==========================================
-     JAVASCRIPT
-=========================================== -->
 
 <script src="js/api.js" defer></script>
 <script src="js/app.js" defer></script>
