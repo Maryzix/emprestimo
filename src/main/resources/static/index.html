@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emprestimo | Sistema de Gestão</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/api.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">E</div>
+            <div>
+                <h2>Emprestimo</h2>
+                <span>Gestão de equipamentos</span>
+            </div>
+        </div>
+
+        <nav class="navigation">
+            <span class="nav-label">MENU PRINCIPAL</span>
+
+            <a href="#dashboard" class="nav-link active" data-page="dashboard">
+                <span>▦</span> Dashboard
+            </a>
+
+            <a href="#colaboradores" class="nav-link" data-page="colaboradores">
+                <span>♙</span> Colaboradores
+            </a>
+
+            <a href="#equipamentos" class="nav-link" data-page="equipamentos">
+                <span>▣</span> Equipamentos
+            </a>
+
+            <a href="#emprestimos" class="nav-link" data-page="emprestimos">
+                <span>⇄</span> Empréstimos
+            </a>
+
+            <a href="#historico" class="nav-link" data-page="historico">
+                <span>◷</span> Histórico
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-avatar">A</div>
+            <div>
+                <strong>Administrador</strong>
+                <span>Gestão do sistema</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <span class="breadcrumb">
+                    Sistema / <strong id="breadcrumb">Dashboard</strong>
+                </span>
+                <h1 id="page-title">Dashboard</h1>
+            </div>
+
+            <div class="topbar-info">
+                <span class="status-dot"></span>
+                Sistema online
+            </div>
+        </header>
+
+        <div class="content">
+
+            <!-- DASHBOARD -->
+            <section id="dashboard" class="page active">
+
+                <div class="welcome">
+                    <div>
+                        <h2>Bem-vindo ao Emprestimo!</h2>
+                        <p>Acompanhe os dados e movimentações do seu sistema.</p>
+                    </div>
+
+                    <span id="current-date"></span>
+                </div>
+
+                <div class="stats-grid">
+
+                    <article class="stat-card">
+                        <div class="stat-icon blue">♙</div>
+                        <span>Colaboradores</span>
+                        <strong id="total-colaboradores">--</strong>
+                        <small>Pessoas cadastradas</small>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-icon purple">▣</div>
+                        <span>Equipamentos</span>
+                        <strong id="total-equipamentos">--</strong>
+                        <small>Itens cadastrados</small>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-icon orange">⇄</div>
+                        <span>Empréstimos ativos</span>
+                        <strong id="total-emprestimos">--</strong>
+                        <small>Itens emprestados</small>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-icon green">✓</div>
+                        <span>Devoluções</span>
+                        <strong id="total-devolucoes">--</strong>
+                        <small>Movimentações concluídas</small>
+                    </article>
+
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>Acompanhamento do sistema</h3>
+                            <p>Resumo das informações cadastradas.</p>
+                        </div>
+                    </div>
+
+                    <div class="empty-state">
+                        <div class="empty-icon">▤</div>
+                        <h3>Seu painel está pronto!</h3>
+                        <p>Os indicadores serão atualizados conforme conectarmos os módulos.</p>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- COLABORADORES -->
+            <section id="colaboradores" class="page">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Colaboradores</h2>
+                        <p>Gerencie as pessoas cadastradas no sistema.</p>
+                    </div>
+
+                    <button class="btn-primary" id="btn-novo-colaborador">
+                        + Novo colaborador
+                    </button>
+                </div>
+
+                <div id="mensagem-colaboradores" class="notification hidden"
+                     role="alert" aria-live="polite"></div>
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h3>Lista de colaboradores</h3>
+                            <p>Consulte os colaboradores cadastrados.</p>
+                        </div>
+
+                        <input
+                                type="search"
+                                id="busca-colaborador"
+                                class="search-input"
+                                placeholder="Buscar por nome ou e-mail..."
+                                aria-label="Buscar colaboradores"
+                        >
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Cargo</th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="tabela-colaboradores">
+                            <tr>
+                                <td colspan="4" class="table-message">
+                                    Carregando colaboradores...
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="contador-colaboradores" class="table-footer">
+                        Carregando registros...
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- EQUIPAMENTOS -->
+            <section id="equipamentos" class="page">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Equipamentos</h2>
+                        <p>Gerencie os equipamentos disponíveis.</p>
+                    </div>
+
+                    <button class="btn-primary" id="btn-novo-equipamento">
+                        + Novo equipamento
+                    </button>
+                </div>
+
+                <div class="panel">
+                    <div class="empty-state">
+                        <div class="empty-icon">▣</div>
+                        <h3>Equipamentos</h3>
+                        <p>Vamos conectar esta tela aos endpoints de equipamentos.</p>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- EMPRÉSTIMOS -->
+            <section id="emprestimos" class="page">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Empréstimos</h2>
+                        <p>Controle a retirada e a devolução dos equipamentos.</p>
+                    </div>
+
+                    <button class="btn-primary" id="btn-novo-emprestimo">
+                        + Novo empréstimo
+                    </button>
+                </div>
+
+                <div class="panel">
+                    <div class="empty-state">
+                        <div class="empty-icon">⇄</div>
+                        <h3>Nenhum dado carregado</h3>
+                        <p>Vamos integrar esta tela ao backend.</p>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- HISTÓRICO -->
+            <section id="historico" class="page">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Histórico</h2>
+                        <p>Consulte as movimentações do sistema.</p>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="empty-state">
+                        <div class="empty-icon">◷</div>
+                        <h3>Histórico de movimentações</h3>
+                        <p>Em breve, suas movimentações aparecerão aqui.</p>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+
+        <footer class="footer">
+            Sistema de Empréstimos · Desenvolvido com Java e Spring Boot
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- MODAL DE CADASTRO -->
+<dialog id="modal-colaborador" class="modal">
+
+    <div class="modal-header">
+        <div>
+            <h2>Novo colaborador</h2>
+            <p>Preencha os dados para cadastrar um colaborador.</p>
+        </div>
+
+        <button type="button" id="fechar-modal" class="btn-close"
+                aria-label="Fechar formulário">
+            ×
+        </button>
+    </div>
+
+    <form id="form-colaborador">
+
+        <div class="form-group">
+            <label for="nome">Nome completo</label>
+            <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    placeholder="Digite o nome completo"
+                    maxlength="150"
+                    required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="exemplo@email.com"
+                    maxlength="150"
+                    required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="cargo">Cargo</label>
+            <input
+                    type="text"
+                    id="cargo"
+                    name="cargo"
+                    placeholder="Digite o cargo"
+                    maxlength="100"
+                    required
+            >
+        </div>
+
+        <div id="erro-formulario" class="notification error hidden"
+             role="alert" aria-live="polite"></div>
+
+        <div class="modal-actions">
+            <button type="button" id="cancelar-modal" class="btn-secondary">
+                Cancelar
+            </button>
+
+            <button type="submit" id="btn-salvar-colaborador" class="btn-primary">
+                Cadastrar colaborador
+            </button>
+        </div>
+
+    </form>
+
+</dialog>
+
+</body>
+</html>
