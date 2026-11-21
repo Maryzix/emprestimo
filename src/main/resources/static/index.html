@@ -1,177 +1,176 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emprestimo | Sistema de Gestão</title>
+
+    <title>Empréstimos | Dashboard</title>
 
     <link rel="stylesheet" href="css/style.css">
-
-    <script src="js/api.js" defer></script>
-    <script src="js/app.js" defer></script>
 </head>
+
 <body>
 
 <div class="layout">
 
+    <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
+
     <aside class="sidebar">
+
         <div class="brand">
-            <div class="brand-icon">E</div>
-            <div>
-                <h2>Emprestimo</h2>
-                <span>Gestão de equipamentos</span>
-            </div>
+            <h2>Empréstimos</h2>
+            <span>Gestão de equipamentos</span>
         </div>
 
         <nav class="navigation">
-            <span class="nav-label">MENU PRINCIPAL</span>
 
-            <a href="#dashboard" class="nav-link active" data-page="dashboard">
-                <span>▦</span> Dashboard
+            <a href="#" class="nav-link active" data-page="dashboard">
+                <span>Dashboard</span>
             </a>
 
-            <a href="#colaboradores" class="nav-link" data-page="colaboradores">
-                <span>♙</span> Colaboradores
+            <a href="#" class="nav-link" data-page="colaboradores">
+                <span>Colaboradores</span>
             </a>
 
-            <a href="#equipamentos" class="nav-link" data-page="equipamentos">
-                <span>▣</span> Equipamentos
+            <a href="#" class="nav-link" data-page="equipamentos">
+                <span>Equipamentos</span>
             </a>
 
-            <a href="#emprestimos" class="nav-link" data-page="emprestimos">
-                <span>⇄</span> Empréstimos
+            <a href="#" class="nav-link" data-page="emprestimos">
+                <span>Empréstimos</span>
             </a>
 
-            <a href="#historico" class="nav-link" data-page="historico">
-                <span>◷</span> Histórico
+            <a href="#" class="nav-link" data-page="historico">
+                <span>Histórico</span>
             </a>
+
         </nav>
 
-        <div class="sidebar-footer">
-            <div class="user-avatar">A</div>
-            <div>
-                <strong>Administrador</strong>
-                <span>Gestão do sistema</span>
-            </div>
-        </div>
     </aside>
+
+    <!-- ==========================================
+         CONTEÚDO PRINCIPAL
+    =========================================== -->
 
     <main class="main-content">
 
+        <!-- CABEÇALHO -->
+
         <header class="topbar">
+
             <div>
-                <span class="breadcrumb">
-                    Sistema / <strong id="breadcrumb">Dashboard</strong>
-                </span>
                 <h1 id="page-title">Dashboard</h1>
+                <p id="breadcrumb">Dashboard</p>
             </div>
 
-            <div class="topbar-info">
-                <span class="status-dot"></span>
-                Sistema online
+            <div class="topbar-date">
+                <span id="current-date"></span>
             </div>
+
         </header>
 
         <div class="content">
 
-            <!-- DASHBOARD -->
+            <!-- ==========================================
+                 DASHBOARD
+            =========================================== -->
+
             <section id="dashboard" class="page active">
 
-                <div class="welcome">
+                <div class="section-heading">
                     <div>
-                        <h2>Bem-vindo ao Emprestimo!</h2>
-                        <p>Acompanhe os dados e movimentações do seu sistema.</p>
+                        <h2>Visão geral</h2>
+                        <p>Acompanhe os dados do sistema.</p>
                     </div>
-
-                    <span id="current-date"></span>
                 </div>
 
                 <div class="stats-grid">
 
-                    <article class="stat-card">
-                        <div class="stat-icon blue">♙</div>
+                    <div class="stat-card">
                         <span>Colaboradores</span>
-                        <strong id="total-colaboradores">--</strong>
-                        <small>Pessoas cadastradas</small>
-                    </article>
+                        <h2 id="total-colaboradores">0</h2>
+                    </div>
 
-                    <article class="stat-card">
-                        <div class="stat-icon purple">▣</div>
+                    <div class="stat-card">
                         <span>Equipamentos</span>
-                        <strong id="total-equipamentos">--</strong>
-                        <small>Itens cadastrados</small>
-                    </article>
+                        <h2 id="total-equipamentos">0</h2>
+                    </div>
 
-                    <article class="stat-card">
-                        <div class="stat-icon orange">⇄</div>
+                    <div class="stat-card">
                         <span>Empréstimos ativos</span>
-                        <strong id="total-emprestimos">--</strong>
-                        <small>Itens emprestados</small>
-                    </article>
+                        <h2 id="total-emprestimos">0</h2>
+                    </div>
 
-                    <article class="stat-card">
-                        <div class="stat-icon green">✓</div>
+                    <div class="stat-card">
                         <span>Devoluções</span>
-                        <strong id="total-devolucoes">--</strong>
-                        <small>Movimentações concluídas</small>
-                    </article>
+                        <h2 id="total-devolucoes">0</h2>
+                    </div>
 
                 </div>
 
                 <div class="panel">
-                    <div class="panel-header">
-                        <div>
-                            <h3>Acompanhamento do sistema</h3>
-                            <p>Resumo das informações cadastradas.</p>
-                        </div>
-                    </div>
-
-                    <div class="empty-state">
-                        <div class="empty-icon">▤</div>
-                        <h3>Seu painel está pronto!</h3>
-                        <p>Os indicadores serão atualizados conforme conectarmos os módulos.</p>
-                    </div>
+                    <h3>Bem-vindo ao sistema!</h3>
+                    <p>
+                        Utilize o menu lateral para gerenciar colaboradores,
+                        equipamentos e empréstimos.
+                    </p>
                 </div>
 
             </section>
 
-            <!-- COLABORADORES -->
+            <!-- ==========================================
+                 COLABORADORES
+            =========================================== -->
+
             <section id="colaboradores" class="page">
 
                 <div class="section-heading">
+
                     <div>
                         <h2>Colaboradores</h2>
-                        <p>Gerencie as pessoas cadastradas no sistema.</p>
+                        <p>Gerencie os colaboradores cadastrados.</p>
                     </div>
 
-                    <button class="btn-primary" id="btn-novo-colaborador">
+                    <button
+                            type="button"
+                            id="btn-novo-colaborador"
+                            class="btn-primary"
+                    >
                         + Novo colaborador
                     </button>
+
                 </div>
 
-                <div id="mensagem-colaboradores" class="notification hidden"
-                     role="alert" aria-live="polite"></div>
+                <div
+                        id="mensagem-colaboradores"
+                        class="notification hidden"
+                ></div>
 
                 <div class="panel">
 
-                    <div class="panel-header">
-                        <div>
-                            <h3>Lista de colaboradores</h3>
-                            <p>Consulte os colaboradores cadastrados.</p>
-                        </div>
+                    <div class="section-heading">
+                        <h3>Colaboradores cadastrados</h3>
 
-                        <input
-                                type="search"
-                                id="busca-colaborador"
-                                class="search-input"
-                                placeholder="Buscar por nome ou e-mail..."
-                                aria-label="Buscar colaboradores"
-                        >
+                        <span id="contador-colaboradores">
+                            0 colaborador(es)
+                        </span>
                     </div>
 
+                    <input
+                            type="search"
+                            id="busca-colaborador"
+                            class="search-input"
+                            placeholder="Buscar por nome ou e-mail..."
+                    >
+
                     <div class="table-container">
+
                         <table class="data-table">
+
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -182,170 +181,365 @@
                             </thead>
 
                             <tbody id="tabela-colaboradores">
+
                             <tr>
                                 <td colspan="4" class="table-message">
                                     Carregando colaboradores...
                                 </td>
                             </tr>
-                            </tbody>
-                        </table>
-                    </div>
 
-                    <div id="contador-colaboradores" class="table-footer">
-                        Carregando registros...
+                            </tbody>
+
+                        </table>
+
                     </div>
 
                 </div>
 
             </section>
 
-            <!-- EQUIPAMENTOS -->
+            <!-- ==========================================
+                 EQUIPAMENTOS
+            =========================================== -->
+
             <section id="equipamentos" class="page">
 
                 <div class="section-heading">
+
                     <div>
                         <h2>Equipamentos</h2>
-                        <p>Gerencie os equipamentos disponíveis.</p>
+                        <p>
+                            Gerencie os equipamentos disponíveis para empréstimo.
+                        </p>
                     </div>
 
-                    <button class="btn-primary" id="btn-novo-equipamento">
+                    <button
+                            type="button"
+                            id="btn-novo-equipamento"
+                            class="btn-primary"
+                    >
                         + Novo equipamento
                     </button>
+
                 </div>
 
+                <div
+                        id="mensagem-equipamentos"
+                        class="notification hidden"
+                ></div>
+
                 <div class="panel">
-                    <div class="empty-state">
-                        <div class="empty-icon">▣</div>
-                        <h3>Equipamentos</h3>
-                        <p>Vamos conectar esta tela aos endpoints de equipamentos.</p>
+
+                    <div class="section-heading">
+
+                        <h3>Equipamentos cadastrados</h3>
+
+                        <span id="contador-equipamentos">
+                            0 equipamento(s)
+                        </span>
+
                     </div>
+
+                    <input
+                            type="search"
+                            id="busca-equipamento"
+                            class="search-input"
+                            placeholder="Buscar por patrimônio, nome ou tipo..."
+                    >
+
+                    <div class="table-container">
+
+                        <table class="data-table">
+
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Patrimônio</th>
+                                <th>Nome</th>
+                                <th>Tipo</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="tabela-equipamentos">
+
+                            <tr>
+                                <td colspan="5" class="table-message">
+                                    Carregando equipamentos...
+                                </td>
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
                 </div>
 
             </section>
 
-            <!-- EMPRÉSTIMOS -->
+            <!-- ==========================================
+                 EMPRÉSTIMOS
+            =========================================== -->
+
             <section id="emprestimos" class="page">
 
                 <div class="section-heading">
+
                     <div>
                         <h2>Empréstimos</h2>
-                        <p>Controle a retirada e a devolução dos equipamentos.</p>
+                        <p>Gerencie os empréstimos de equipamentos.</p>
                     </div>
 
-                    <button class="btn-primary" id="btn-novo-emprestimo">
+                    <button
+                            type="button"
+                            id="btn-novo-emprestimo"
+                            class="btn-primary"
+                    >
                         + Novo empréstimo
                     </button>
+
                 </div>
 
                 <div class="panel">
-                    <div class="empty-state">
-                        <div class="empty-icon">⇄</div>
-                        <h3>Nenhum dado carregado</h3>
-                        <p>Vamos integrar esta tela ao backend.</p>
+
+                    <div class="section-heading">
+                        <h3>Empréstimos ativos</h3>
                     </div>
+
+                    <p>
+                        A integração dos empréstimos será realizada na próxima etapa.
+                    </p>
+
                 </div>
 
             </section>
 
-            <!-- HISTÓRICO -->
+            <!-- ==========================================
+                 HISTÓRICO
+            =========================================== -->
+
             <section id="historico" class="page">
 
                 <div class="section-heading">
+
                     <div>
                         <h2>Histórico</h2>
                         <p>Consulte as movimentações do sistema.</p>
                     </div>
+
                 </div>
 
                 <div class="panel">
-                    <div class="empty-state">
-                        <div class="empty-icon">◷</div>
-                        <h3>Histórico de movimentações</h3>
-                        <p>Em breve, suas movimentações aparecerão aqui.</p>
-                    </div>
+
+                    <h3>Histórico de movimentações</h3>
+
+                    <p>
+                        O histórico será integrado na próxima etapa do projeto.
+                    </p>
+
                 </div>
 
             </section>
 
         </div>
-
-        <footer class="footer">
-            Sistema de Empréstimos · Desenvolvido com Java e Spring Boot
-        </footer>
 
     </main>
 
 </div>
 
-<!-- MODAL DE CADASTRO -->
+<!-- ==========================================
+     MODAL: CADASTRAR COLABORADOR
+=========================================== -->
+
 <dialog id="modal-colaborador" class="modal">
 
-    <div class="modal-header">
-        <div>
-            <h2>Novo colaborador</h2>
-            <p>Preencha os dados para cadastrar um colaborador.</p>
-        </div>
+    <div class="section-heading">
 
-        <button type="button" id="fechar-modal" class="btn-close"
-                aria-label="Fechar formulário">
-            ×
+        <h2>Novo colaborador</h2>
+
+        <button
+                type="button"
+                id="fechar-modal"
+                class="btn-secondary"
+        >
+            X
         </button>
+
     </div>
 
     <form id="form-colaborador">
 
         <div class="form-group">
-            <label for="nome">Nome completo</label>
+
+            <label for="nome">Nome</label>
+
             <input
                     type="text"
                     id="nome"
-                    name="nome"
-                    placeholder="Digite o nome completo"
-                    maxlength="150"
+                    placeholder="Nome completo"
                     required
             >
+
         </div>
 
         <div class="form-group">
+
             <label for="email">E-mail</label>
+
             <input
                     type="email"
                     id="email"
-                    name="email"
-                    placeholder="exemplo@email.com"
-                    maxlength="150"
+                    placeholder="email@empresa.com"
                     required
             >
+
         </div>
 
         <div class="form-group">
+
             <label for="cargo">Cargo</label>
+
             <input
                     type="text"
                     id="cargo"
-                    name="cargo"
-                    placeholder="Digite o cargo"
-                    maxlength="100"
+                    placeholder="Cargo do colaborador"
                     required
             >
+
         </div>
 
-        <div id="erro-formulario" class="notification error hidden"
-             role="alert" aria-live="polite"></div>
+        <div
+                id="erro-formulario"
+                class="notification hidden"
+        ></div>
 
         <div class="modal-actions">
-            <button type="button" id="cancelar-modal" class="btn-secondary">
+
+            <button
+                    type="button"
+                    id="cancelar-modal"
+                    class="btn-secondary"
+            >
                 Cancelar
             </button>
 
-            <button type="submit" id="btn-salvar-colaborador" class="btn-primary">
-                Cadastrar colaborador
+            <button
+                    type="submit"
+                    id="btn-salvar-colaborador"
+                    class="btn-primary"
+            >
+                Salvar colaborador
             </button>
+
         </div>
 
     </form>
 
 </dialog>
+
+<!-- ==========================================
+     MODAL: CADASTRAR EQUIPAMENTO
+=========================================== -->
+
+<dialog id="modal-equipamento" class="modal">
+
+    <div class="section-heading">
+
+        <h2>Novo equipamento</h2>
+
+        <button
+                type="button"
+                id="fechar-modal-equipamento"
+                class="btn-secondary"
+        >
+            X
+        </button>
+
+    </div>
+
+    <form id="form-equipamento">
+
+        <div class="form-group">
+
+            <label for="patrimonio">Patrimônio</label>
+
+            <input
+                    type="text"
+                    id="patrimonio"
+                    placeholder="Ex.: PAT-001"
+                    required
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="nome-equipamento">Nome do equipamento</label>
+
+            <input
+                    type="text"
+                    id="nome-equipamento"
+                    placeholder="Ex.: Notebook Dell"
+                    required
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="tipo-equipamento">Tipo</label>
+
+            <select id="tipo-equipamento" required>
+
+                <option value="">Selecione o tipo</option>
+
+                <option value="NOTEBOOK">Notebook</option>
+                <option value="MONITOR">Monitor</option>
+                <option value="PROJETOR">Projetor</option>
+                <option value="IMPRESSORA">Impressora</option>
+                <option value="HEADSET">Headset</option>
+
+            </select>
+
+        </div>
+
+        <div
+                id="erro-formulario-equipamento"
+                class="notification hidden"
+        ></div>
+
+        <div class="modal-actions">
+
+            <button
+                    type="button"
+                    id="cancelar-modal-equipamento"
+                    class="btn-secondary"
+            >
+                Cancelar
+            </button>
+
+            <button
+                    type="submit"
+                    id="btn-salvar-equipamento"
+                    class="btn-primary"
+            >
+                Salvar equipamento
+            </button>
+
+        </div>
+
+    </form>
+
+</dialog>
+
+<!-- ==========================================
+     JAVASCRIPT
+=========================================== -->
+
+<script src="js/api.js" defer></script>
+<script src="js/app.js" defer></script>
 
 </body>
 </html>

@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
-    // ELEMENTOS DA NAVEGAÇÃO
+    // NAVEGAÇÃO
     // ==========================================
 
     const links = document.querySelectorAll('.nav-link');
@@ -10,39 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const pageTitle = document.getElementById('page-title');
     const breadcrumb = document.getElementById('breadcrumb');
-
-    // ==========================================
-    // ELEMENTOS DOS COLABORADORES
-    // ==========================================
-
-    const tabelaColaboradores = document.getElementById('tabela-colaboradores');
-    const contadorColaboradores = document.getElementById('contador-colaboradores');
-    const totalColaboradores = document.getElementById('total-colaboradores');
-
-    const mensagemColaboradores = document.getElementById('mensagem-colaboradores');
-    const buscaColaborador = document.getElementById('busca-colaborador');
-
-    // ==========================================
-    // ELEMENTOS DO MODAL
-    // ==========================================
-
-    const modalColaborador = document.getElementById('modal-colaborador');
-    const formColaborador = document.getElementById('form-colaborador');
-
-    const btnNovoColaborador = document.getElementById('btn-novo-colaborador');
-    const btnSalvarColaborador = document.getElementById('btn-salvar-colaborador');
-
-    const nomeInput = document.getElementById('nome');
-    const emailInput = document.getElementById('email');
-    const cargoInput = document.getElementById('cargo');
-
-    const erroFormulario = document.getElementById('erro-formulario');
-
-    const btnFecharModal = document.getElementById('btn-fechar-modal');
-    const btnCancelarModal = document.getElementById('btn-cancelar-modal');
-
-    // Armazena os colaboradores recebidos da API
-    let colaboradores = [];
 
     // ==========================================
     // DATA ATUAL
@@ -60,6 +27,81 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
+    // ELEMENTOS DOS COLABORADORES
+    // ==========================================
+
+    const tabelaColaboradores = document.getElementById('tabela-colaboradores');
+    const contadorColaboradores = document.getElementById('contador-colaboradores');
+    const totalColaboradores = document.getElementById('total-colaboradores');
+
+    const mensagemColaboradores = document.getElementById('mensagem-colaboradores');
+    const buscaColaborador = document.getElementById('busca-colaborador');
+
+    const modalColaborador = document.getElementById('modal-colaborador');
+    const formColaborador = document.getElementById('form-colaborador');
+
+    const btnNovoColaborador = document.getElementById('btn-novo-colaborador');
+    const btnSalvarColaborador = document.getElementById('btn-salvar-colaborador');
+
+    const nomeInput = document.getElementById('nome');
+    const emailInput = document.getElementById('email');
+    const cargoInput = document.getElementById('cargo');
+
+    const erroFormulario = document.getElementById('erro-formulario');
+
+    // IDs conforme o HTML atual
+    const btnFecharModal = document.getElementById('fechar-modal');
+    const btnCancelarModal = document.getElementById('cancelar-modal');
+
+    let colaboradores = [];
+
+    // ==========================================
+    // ELEMENTOS DOS EQUIPAMENTOS
+    // ==========================================
+
+    const tabelaEquipamentos = document.getElementById('tabela-equipamentos');
+    const contadorEquipamentos = document.getElementById('contador-equipamentos');
+    const totalEquipamentos = document.getElementById('total-equipamentos');
+
+    const mensagemEquipamentos = document.getElementById('mensagem-equipamentos');
+    const buscaEquipamento = document.getElementById('busca-equipamento');
+
+    const modalEquipamento = document.getElementById('modal-equipamento');
+    const formEquipamento = document.getElementById('form-equipamento');
+
+    const btnNovoEquipamento = document.getElementById('btn-novo-equipamento');
+    const btnSalvarEquipamento = document.getElementById('btn-salvar-equipamento');
+
+    const patrimonioInput = document.getElementById('patrimonio');
+    const nomeEquipamentoInput = document.getElementById('nome-equipamento');
+    const tipoEquipamentoInput = document.getElementById('tipo-equipamento');
+
+    const erroFormularioEquipamento = document.getElementById('erro-formulario-equipamento');
+
+    const btnFecharModalEquipamento = document.getElementById('fechar-modal-equipamento');
+    const btnCancelarModalEquipamento = document.getElementById('cancelar-modal-equipamento');
+
+    let equipamentos = [];
+
+    // ==========================================
+    // MENSAGENS
+    // ==========================================
+
+    function mostrarMensagem(elemento, mensagem, tipo) {
+        if (!elemento) return;
+
+        elemento.textContent = mensagem;
+        elemento.className = `notification ${tipo}`;
+    }
+
+    function esconderMensagem(elemento) {
+        if (!elemento) return;
+
+        elemento.textContent = '';
+        elemento.className = 'notification hidden';
+    }
+
+    // ==========================================
     // NAVEGAÇÃO ENTRE AS PÁGINAS
     // ==========================================
 
@@ -71,19 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const pageId = link.dataset.page;
 
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-
-            links.forEach(item => {
-                item.classList.remove('active');
-            });
+            pages.forEach(page => page.classList.remove('active'));
+            links.forEach(item => item.classList.remove('active'));
 
             const selectedPage = document.getElementById(pageId);
 
-            if (!selectedPage) {
-                return;
-            }
+            if (!selectedPage) return;
 
             selectedPage.classList.add('active');
             link.classList.add('active');
@@ -96,9 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 breadcrumb.textContent = link.textContent.trim();
             }
 
-            // Atualiza os colaboradores ao abrir essa página
             if (pageId === 'colaboradores') {
                 listarColaboradores();
+            }
+
+            if (pageId === 'equipamentos') {
+                listarEquipamentos();
             }
 
         });
@@ -106,41 +144,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // MENSAGENS
-    // ==========================================
-
-    function mostrarMensagem(elemento, mensagem, tipo) {
-
-        if (!elemento) {
-            return;
-        }
-
-        elemento.textContent = mensagem;
-        elemento.className = `notification ${tipo}`;
-
-    }
-
-    function esconderMensagem(elemento) {
-
-        if (!elemento) {
-            return;
-        }
-
-        elemento.textContent = '';
-        elemento.className = 'notification hidden';
-
-    }
-
-    // ==========================================
     // LISTAR COLABORADORES
     // ==========================================
 
     async function listarColaboradores() {
 
-        if (!tabelaColaboradores) {
-            console.error('Tabela de colaboradores não encontrada no HTML.');
-            return;
-        }
+        if (!tabelaColaboradores) return;
 
         tabelaColaboradores.innerHTML = `
             <tr>
@@ -152,14 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
 
-            // Consulta o endpoint GET /colaboradores
             colaboradores = await API.get('/colaboradores');
-
-            console.log('Colaboradores recebidos:', colaboradores);
 
             renderizarColaboradores(colaboradores);
 
-            // Atualiza o indicador do dashboard
             if (totalColaboradores) {
                 totalColaboradores.textContent = colaboradores.length;
             }
@@ -176,25 +181,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 </tr>
             `;
 
-            mostrarMensagem(
-                mensagemColaboradores,
-                error.message,
-                'error'
-            );
+            mostrarMensagem(mensagemColaboradores, error.message, 'error');
 
         }
 
     }
 
     // ==========================================
-    // RENDERIZAR COLABORADORES NA TABELA
+    // RENDERIZAR COLABORADORES
     // ==========================================
 
     function renderizarColaboradores(lista) {
 
-        if (!tabelaColaboradores) {
-            return;
-        }
+        if (!tabelaColaboradores) return;
 
         tabelaColaboradores.innerHTML = '';
 
@@ -214,22 +213,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const linha = document.createElement('tr');
 
-                const id = document.createElement('td');
-                id.textContent = colaborador.id ?? '-';
+                const valores = [
+                    colaborador.id,
+                    colaborador.nome,
+                    colaborador.email,
+                    colaborador.cargo
+                ];
 
-                const nome = document.createElement('td');
-                nome.textContent = colaborador.nome ?? '-';
-
-                const email = document.createElement('td');
-                email.textContent = colaborador.email ?? '-';
-
-                const cargo = document.createElement('td');
-                cargo.textContent = colaborador.cargo ?? '-';
-
-                linha.appendChild(id);
-                linha.appendChild(nome);
-                linha.appendChild(email);
-                linha.appendChild(cargo);
+                valores.forEach(valor => {
+                    const coluna = document.createElement('td');
+                    coluna.textContent = valor ?? '-';
+                    linha.appendChild(coluna);
+                });
 
                 tabelaColaboradores.appendChild(linha);
 
@@ -270,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // ABRIR MODAL DE CADASTRO
+    // MODAL DE COLABORADORES
     // ==========================================
 
     if (btnNovoColaborador && modalColaborador) {
@@ -278,42 +273,28 @@ document.addEventListener('DOMContentLoaded', () => {
         btnNovoColaborador.addEventListener('click', () => {
 
             formColaborador.reset();
-
             esconderMensagem(erroFormulario);
 
             modalColaborador.showModal();
-
             nomeInput?.focus();
 
         });
 
     }
 
-    // ==========================================
-    // FECHAR MODAL
-    // ==========================================
-
-    function fecharModal() {
+    function fecharModalColaborador() {
 
         if (modalColaborador) {
             modalColaborador.close();
         }
 
-        if (formColaborador) {
-            formColaborador.reset();
-        }
-
+        formColaborador?.reset();
         esconderMensagem(erroFormulario);
 
     }
 
-    if (btnFecharModal) {
-        btnFecharModal.addEventListener('click', fecharModal);
-    }
-
-    if (btnCancelarModal) {
-        btnCancelarModal.addEventListener('click', fecharModal);
-    }
+    btnFecharModal?.addEventListener('click', fecharModalColaborador);
+    btnCancelarModal?.addEventListener('click', fecharModalColaborador);
 
     // ==========================================
     // CADASTRAR COLABORADOR
@@ -349,29 +330,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
 
-                // Envia o cadastro para POST /colaboradores
                 await API.post('/colaboradores', colaborador);
 
-                fecharModal();
+                fecharModalColaborador();
 
                 mostrarMensagem(
                     mensagemColaboradores,
-                    'Colaborador cadastrado com sucesso!',
+                    'Novo colaborador cadastrado com sucesso!',
                     'success'
                 );
 
-                // Busca novamente a lista atualizada
                 await listarColaboradores();
 
             } catch (error) {
 
                 console.error('Erro ao cadastrar colaborador:', error);
 
-                mostrarMensagem(
-                    erroFormulario,
-                    error.message,
-                    'error'
-                );
+                mostrarMensagem(erroFormulario, error.message, 'error');
 
             } finally {
 
@@ -385,10 +360,281 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
+    // LISTAR EQUIPAMENTOS
+    // ==========================================
+
+    async function listarEquipamentos() {
+
+        if (!tabelaEquipamentos) return;
+
+        tabelaEquipamentos.innerHTML = `
+            <tr>
+                <td colspan="5" class="table-message">
+                    Carregando equipamentos...
+                </td>
+            </tr>
+        `;
+
+        try {
+
+            equipamentos = await API.get('/equipamentos');
+
+            renderizarEquipamentos(equipamentos);
+
+            if (totalEquipamentos) {
+                totalEquipamentos.textContent = equipamentos.length;
+            }
+
+        } catch (error) {
+
+            console.error('Erro ao listar equipamentos:', error);
+
+            tabelaEquipamentos.innerHTML = `
+                <tr>
+                    <td colspan="5" class="table-message">
+                        Não foi possível carregar os equipamentos.
+                    </td>
+                </tr>
+            `;
+
+            mostrarMensagem(mensagemEquipamentos, error.message, 'error');
+
+        }
+
+    }
+
+    // ==========================================
+    // RENDERIZAR EQUIPAMENTOS
+    // ==========================================
+
+    function formatarTipo(tipo) {
+
+        const tipos = {
+            NOTEBOOK: 'Notebook',
+            MONITOR: 'Monitor',
+            PROJETOR: 'Projetor',
+            IMPRESSORA: 'Impressora',
+            HEADSET: 'Headset'
+        };
+
+        return tipos[tipo] || tipo || '-';
+
+    }
+
+    function renderizarEquipamentos(lista) {
+
+        if (!tabelaEquipamentos) return;
+
+        tabelaEquipamentos.innerHTML = '';
+
+        if (!lista || lista.length === 0) {
+
+            tabelaEquipamentos.innerHTML = `
+                <tr>
+                    <td colspan="5" class="table-message">
+                        Nenhum equipamento cadastrado.
+                    </td>
+                </tr>
+            `;
+
+        } else {
+
+            lista.forEach(equipamento => {
+
+                const linha = document.createElement('tr');
+
+                const id = document.createElement('td');
+                id.textContent = equipamento.id ?? '-';
+
+                const patrimonio = document.createElement('td');
+                patrimonio.textContent = equipamento.patrimonio ?? '-';
+
+                const nome = document.createElement('td');
+                nome.textContent = equipamento.nome ?? '-';
+
+                const tipo = document.createElement('td');
+                tipo.textContent = formatarTipo(equipamento.tipo);
+
+                const status = document.createElement('td');
+
+                const etiqueta = document.createElement('span');
+
+                etiqueta.textContent = equipamento.disponivel
+                    ? 'Disponível'
+                    : 'Emprestado';
+
+                etiqueta.className = equipamento.disponivel
+                    ? 'status-disponivel'
+                    : 'status-emprestado';
+
+                status.appendChild(etiqueta);
+
+                linha.appendChild(id);
+                linha.appendChild(patrimonio);
+                linha.appendChild(nome);
+                linha.appendChild(tipo);
+                linha.appendChild(status);
+
+                tabelaEquipamentos.appendChild(linha);
+
+            });
+
+        }
+
+        if (contadorEquipamentos) {
+            contadorEquipamentos.textContent =
+                `${lista.length} equipamento(s)`;
+        }
+
+    }
+
+    // ==========================================
+    // BUSCAR EQUIPAMENTO
+    // ==========================================
+
+    if (buscaEquipamento) {
+
+        buscaEquipamento.addEventListener('input', () => {
+
+            const termo = buscaEquipamento.value.toLowerCase().trim();
+
+            const resultado = equipamentos.filter(equipamento => {
+
+                const patrimonio = (equipamento.patrimonio || '').toLowerCase();
+                const nome = (equipamento.nome || '').toLowerCase();
+                const tipo = formatarTipo(equipamento.tipo).toLowerCase();
+
+                return patrimonio.includes(termo)
+                    || nome.includes(termo)
+                    || tipo.includes(termo);
+
+            });
+
+            renderizarEquipamentos(resultado);
+
+        });
+
+    }
+
+    // ==========================================
+    // ABRIR MODAL DE EQUIPAMENTOS
+    // ==========================================
+
+    if (btnNovoEquipamento && modalEquipamento) {
+
+        btnNovoEquipamento.addEventListener('click', () => {
+
+            formEquipamento.reset();
+            esconderMensagem(erroFormularioEquipamento);
+
+            modalEquipamento.showModal();
+            patrimonioInput?.focus();
+
+        });
+
+    }
+
+    // ==========================================
+    // FECHAR MODAL DE EQUIPAMENTOS
+    // ==========================================
+
+    function fecharModalEquipamento() {
+
+        if (modalEquipamento) {
+            modalEquipamento.close();
+        }
+
+        formEquipamento?.reset();
+        esconderMensagem(erroFormularioEquipamento);
+
+    }
+
+    btnFecharModalEquipamento?.addEventListener(
+        'click',
+        fecharModalEquipamento
+    );
+
+    btnCancelarModalEquipamento?.addEventListener(
+        'click',
+        fecharModalEquipamento
+    );
+
+    // ==========================================
+    // CADASTRAR EQUIPAMENTO
+    // ==========================================
+
+    if (formEquipamento) {
+
+        formEquipamento.addEventListener('submit', async event => {
+
+            event.preventDefault();
+
+            esconderMensagem(erroFormularioEquipamento);
+
+            const equipamento = {
+                patrimonio: patrimonioInput.value.trim(),
+                nome: nomeEquipamentoInput.value.trim(),
+                tipo: tipoEquipamentoInput.value
+            };
+
+            if (
+                !equipamento.patrimonio
+                || !equipamento.nome
+                || !equipamento.tipo
+            ) {
+
+                mostrarMensagem(
+                    erroFormularioEquipamento,
+                    'Preencha todos os campos.',
+                    'error'
+                );
+
+                return;
+            }
+
+            btnSalvarEquipamento.disabled = true;
+            btnSalvarEquipamento.textContent = 'Salvando...';
+
+            try {
+
+                await API.post('/equipamentos', equipamento);
+
+                fecharModalEquipamento();
+
+                mostrarMensagem(
+                    mensagemEquipamentos,
+                    'Novo equipamento cadastrado com sucesso!',
+                    'success'
+                );
+
+                await listarEquipamentos();
+
+            } catch (error) {
+
+                console.error('Erro ao cadastrar equipamento:', error);
+
+                mostrarMensagem(
+                    erroFormularioEquipamento,
+                    error.message,
+                    'error'
+                );
+
+            } finally {
+
+                btnSalvarEquipamento.disabled = false;
+                btnSalvarEquipamento.textContent = 'Salvar equipamento';
+
+            }
+
+        });
+
+    }
+
+    // ==========================================
     // INICIALIZAÇÃO
     // ==========================================
 
-    // Busca os colaboradores assim que o dashboard abre
     listarColaboradores();
+    listarEquipamentos();
 
 });
