@@ -125,6 +125,9 @@ O projeto possui testes para as entidades `Equipamento` e `Emprestimo`, verifica
 
 **URL da API:** https://emprestimo-api-o91o.onrender.com/
 
+**Swagger:** 
+**URL:** http://localhost:8080/swagger-ui/index.html#/
+
 ## Autor
 
 Desenvolvido como projeto prático de aprendizagem em Java e Spring Boot.
